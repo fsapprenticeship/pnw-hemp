@@ -1,0 +1,43 @@
+body,
+html {
+    font-family: "Quicksand", sans-serif;
+}
+@media only screen and (max-width: 500px) {
+    body {
+        text-align: center;
+    }
+}
+
+.App {
+    margin-top: 10px;
+}
+
+.App-intro {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.light {
+    color: #aaa;
+}
+
+.small {
+    font-size: 0.8em;
+    padding-left: 10px;
+}
+
+.formElement {
+    width: 250px;
+}
+
+#formErrors {
+    color: #c51162;
+    font-size: 100%;
+    padding-left: 5px;
+}

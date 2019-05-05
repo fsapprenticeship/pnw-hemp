@@ -1,0 +1,47 @@
+{
+  "name": "pnw-hemp",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "@sanity/block-content-to-react": "^2.0.6",
+    "@sanity/client": "^0.135.3",
+    "aws-amplify": "^1.1.26",
+    "aws-amplify-react": "^2.3.0",
+    "brace": "^0.11.1",
+    "classnames": "^2.2.6",
+    "connected-react-router": "^5.0.1",
+    "history": "^4.9.0",
+    "npm": "^6.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.0.0",
+    "react-stripe-elements": "^2.0.3",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "typeface-quicksand": "0.0.54"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "jest-fetch-mock": "^1.7.5",
+    "redux-devtools": "^3.5.0",
+    "redux-mock-store": "^1.5.3",
+    "sinon": "^7.3.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
