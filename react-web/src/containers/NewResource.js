@@ -1,11 +1,13 @@
 import React from 'react';
 import NewResourceForm from '../components/NewResourceForm';
+import TopNavbar from "../components/TopNavbar"
 
 const styles = {
   form: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems:'center',
+    alignItems:'left',
+    paddingLeft: 20
   }
 }
 
@@ -13,11 +15,8 @@ class NewResource extends React.Component {
   render() {
     return (
       <div className='App-intro' style={styles.form}>
-        <h1>New Resource</h1>
-        <p>
-          If you would like to add a new resource fill out the <br />
-          following form and an admin will choose to approve/deny it.
-        </p>
+        <h1>New Bulletin Item</h1>
+        
         <br />
         <NewResourceForm />
       </div>

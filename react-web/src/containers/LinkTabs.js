@@ -6,6 +6,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Add from '../components/NewResourceButton';
 import FolderContainers from "../components/FolderContainers";
+import { Authenticator }  from "aws-amplify-react";
+import NewResource from "../containers/NewResource";
+import { Link } from "react-router-dom";
+
 
 import {TAB_FSA, TAB_CITY_GUIDE, TAB_GETTING_PAID} from "../common/constants"
 import store from '../store/configureStore';
@@ -61,6 +65,44 @@ class LinkTabs extends Component {
     // }
 
     render() {
+        const signUpConfig = {
+            signUpFields: [
+                {
+                    label: 'First Name',
+                    key: 'name',
+                    required: true,
+                    placeholder: 'Mikhael',
+                    type: 'email',
+                    displayOrder: 2
+                  },
+                  {
+                    label: 'Family Name',
+                    key: 'family_name',
+                    required: true,
+                    placeholder: 'Ben David',
+                    type: 'email',
+                    displayOrder: 3
+                  },
+                {
+                    label: 'Email',
+                    key: 'email',
+                    required: true,
+                    placeholder: 'Email',
+                    type: 'email',
+                    displayOrder: 4
+                  },
+                  {
+                    label: 'Password',
+                    key: 'password',
+                    required: true,
+                    placeholder: 'Password',
+                    type: 'password',
+                    displayOrder: 5
+                  },
+                  
+            ],
+            hiddenDefaults: [ "phone_number"]
+        }
         const { classes, authState } = this.props;
         const activeTab = this.state.activeTab;
         return (
@@ -68,48 +110,39 @@ class LinkTabs extends Component {
                 <AppBar position="static">
                     <Tabs value={activeTab} onChange={this.handleTabChange}>
                     <Tab label="Hemp Guide" />
-                    {/* <Tab label="City Guide" /> */}
                     <Tab label="Bulletin Board" />
+                    <Tab label="Make Bulletin Post" />
                     </Tabs>
                 </AppBar>
                 {/* <AuthSignup changeAuthState={this.props.changeAuthState} /> */}
                 {activeTab === TAB_FSA && (
-                    <FolderContainers
-                        folders={fullStackApprenticeship.reduce(
-                            (acc, next) =>
-                                acc.concat({
-                                    name: next.name,
-                                    type: next.type
-                                }),
-                            []
-                        )}
-                    />
+                    <React.Fragment>
+                        <FolderContainers
+                            folders={fullStackApprenticeship.reduce(
+                                (acc, next) =>
+                                    acc.concat({
+                                        name: next.name,
+                                        type: next.type
+                                    }),
+                                []
+                            )}
+                        />
+                    </React.Fragment>
                 )}
                 {activeTab === TAB_CITY_GUIDE && (
-                    // <FolderContainers
-                    //     folders={cityByCity.reduce(
-                    //         (acc, next) =>
-                    //             acc.concat({
-                    //                 name: next.name,
-                    //                 type: next.type
-                    //             }),
-                    //         []
-                    //     )}
-                    // />
-                    <h1>Bulletin</h1>
+                    <React.Fragment>
+                        <Authenticator signUpConfig={signUpConfig} />
+                        <Link to="/new">
+                            <button>New Post</button>
+                        </Link>
+                    </React.Fragment>
                 )
                 }
                 {activeTab === TAB_GETTING_PAID && (
-                    <FolderContainers
-                        folders={findingWork.reduce(
-                            (acc, next) =>
-                                acc.concat({
-                                    name: next.name,
-                                    type: next.type
-                                }),
-                            []
-                        )}
-                    />
+                    <React.Fragment>
+                        <Authenticator signUpConfig={signUpConfig} />
+                            <NewResource />
+                </React.Fragment>
                 )}
                {/* <Add /> */}
 

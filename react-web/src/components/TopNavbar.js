@@ -34,7 +34,7 @@ class TopNavbar extends React.Component {
                 <Toolbar>
                     <Typography component="h6" color="inherit">
                         <Button color="inherit" onClick={() => routeHome()}>
-                            #fsahub
+                            Back To Home
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
@@ -71,14 +71,14 @@ class TopNavbar extends React.Component {
                             //       Payments
                             //   </Button>,
                             //   IconButton for the account circle
-                              <Button
-                                  key={3}
-                                  color="inherit"
-                                  onClick={() => suggest()}
-                              >
-                                  {/* <AccountCircleIcon /> */}
-                                  + Resource
-                              </Button>
+                            //   <Button
+                            //       key={3}
+                            //       color="inherit"
+                            //       onClick={() => suggest()}
+                            //   >
+                            //       {/* <AccountCircleIcon /> */}
+                            //       + Resource
+                            //   </Button>
                           ]}
                 </Toolbar>
             </AppBar>

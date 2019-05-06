@@ -19,7 +19,7 @@ export default ({ childProps }) => (
             <AppliedRoute path="/link/:id" component={LinkComponent} />
             <AppliedRoute path="/tool/:schema" component={ToolsContainer} />
             <AppliedRoute path='/review' exact component={ProcessResource} />
-            <AppliedRoute path='/resource/new' exact component={NewResource} props={childProps} /> 
+            <AppliedRoute path='/new' exact component={NewResource} props={childProps} /> 
         </Switch>
     </ConnectedRouter>
 );
