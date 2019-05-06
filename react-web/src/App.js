@@ -5,14 +5,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { connect } from "react-redux";
 // import { withRouter } from 'react-router-dom';
 import Routes from "./Routes";
-// import awsmobile from "./aws-exports";
+import awsmobile from "./aws-exports";
 import Footer from "./components/Footer";
 import TopNavbar from "./components/TopNavbar"
 
 import "./App.css";
 require("typeface-quicksand");
 
-// Amplify.configure(awsmobile);
+Amplify.configure(awsmobile);
 
 const theme = createMuiTheme({
     typography: {
@@ -47,7 +47,7 @@ class App extends React.Component {
                 <CssBaseline>
                     {/* <TopNavbar /> */}
                     <Routes childProps={childProps} />
-                    <Footer />
+                    {/* <Footer /> */}
                 </CssBaseline>
             </MuiThemeProvider>
         );
