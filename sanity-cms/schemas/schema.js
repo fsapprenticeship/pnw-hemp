@@ -15,6 +15,15 @@ import plant from './plant'
 import glutenFree from './glutenFree'
 import productVariant from './productVariant'
 import recipe from './recipe'
+import clothing from "./clothing";
+import cbd from "./cbd";
+import farming from "./farming";
+import foodProduct from "./foodProduct"
+import fuel from "./fuel";
+import hempStalk from "./hempStalk"
+import industrial from "./industrial";
+import paper from "./paper";
+import skin from "./skin";
 
 import localeString from './locale/String'
 import localeText from './locale/Text'
@@ -29,12 +38,21 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
+    cbd,
+    farming,
+    foodProduct,
+    fuel,
+    hempStalk,
+    industrial,
+    paper,
+    skin,
     recipe,
     cats,
     dogs,
     medicine,
     plant,
     glutenFree,
+    clothing,
 
     // product,
     vendor,
