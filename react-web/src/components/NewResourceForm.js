@@ -2,7 +2,7 @@ import React from 'react';
 import {
   fullStackApprenticeship,
   cityByCity,
-  findingWork
+  // findingWork
   } from '../directories';
 import { API } from 'aws-amplify';
 import { Button, Input, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
@@ -16,77 +16,78 @@ class NewResourceForm extends React.Component {
     super();
 
     this.state = {
-      directory: 'fsa',
-      schemas: [],
+      directory: 'hemp',
+      schemas: fullStackApprenticeship,
       author: '',
       name: '',
-      url: '',
-      schema: 'Get Started',
+      contact: '',
+      schema: '',
       description: '',
-      rank: '0'
     };
   }
 
-  componentDidMount() {
-    this.updateSchemas();
-  }
+  // componentDidMount() {
+  //   this.updateSchemas();
+  // }
 
-  changeDirectory = async e => {
-    await this.setState({
-      directory: e.target.value
-    })
+  // changeDirectory = async e => {
+  //   await this.setState({
+  //     directory: e.target.value
+  //   })
     
-    await this.updateSchemas();
-  }
+  //   await this.updateSchemas();
+  // }
 
-  updateSchemas() {
-    switch (this.state.directory) {
-      case 'fsa':
-        this.setState({ 
-          schemas: fullStackApprenticeship,
-          schema: 'Get Started'
-        })
-        break;
-      case 'cityGuide':
-        this.setState({ 
-          schemas: cityByCity,
-          schema: 'Seattle'
-        })
-        break;
-      case 'findingWork':
-        this.setState({ 
-          schemas: findingWork,
-          schema: 'Community'
-        })
-        break;
-      default:
-        break;
-    }
-  }
+  // updateSchemas() {
+  //   switch (this.state.directory) {
+  //     case 'hemp':
+  //       this.setState({ 
+  //         schemas: fullStackApprenticeship,
+  //         schema: 'Get Started'
+  //       })
+  //       break;
+  //     case 'cityGuide':
+  //       this.setState({ 
+  //         schemas: cityByCity,
+  //         schema: 'Seattle'
+  //       })
+  //       break;
+  //     // case 'findingWork':
+  //     //   this.setState({ 
+  //     //     schemas: findingWork,
+  //     //     schema: 'Community'
+  //     //   })
+  //     //   break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   validateForm = () => {
-    return this.state.name.length > 0 && this.state.description.length > 0 && this.state.url.length > 0; 
+    return this.state.name.length > 0 && this.state.description.length > 0 && this.state.contact.length > 0; 
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
     
     const body = {
-      resourceId: uuidv4(),
+      bulletinId: uuidv4(),
       directory: this.state.directory,
       // author: this.state.author,
+      city: 'Kirkland',
+      state: 'Washington',
       name: this.state.name,
-      url: this.state.url,
-      schema: this.state.schema,
+      contact: this.state.contact,
+      // schema: this.state.schema,
       timestamp: Date.now(),
       description: this.state.description,
-      rank: this.state.rank,
-      approved: undefined
+      // rank: this.state.rank,
+      // approved: undefined
     }
 
     try {
-      const response = await API.post('resources', '/resources', {body})
-      console.log('fsa-sls Response', response)
+      const response = await API.post('bulletin', '/items', {body})
+      console.log('hemp-sls Response', response)
       this.props.routeHome()
     } catch(e) {
       console.log('ERROR', e)
@@ -100,9 +101,9 @@ class NewResourceForm extends React.Component {
     })
   }
 
-  changeSchema = e => {
-    this.setState({ schema: e.target.value })
-  }
+  // changeSchema = e => {
+  //   this.setState({ schema: e.target.value })
+  // }
 
   render() {
     let schemas = this.state.schemas.map((item, i) => 
@@ -110,7 +111,7 @@ class NewResourceForm extends React.Component {
     return (
       <form className='newResourceForm'>
         <FormControl className="formElement">
-          <InputLabel>Resource Name</InputLabel>
+          <InputLabel>Bulletin Name</InputLabel>
           <Input
               type="text"
               id="name"
@@ -119,23 +120,23 @@ class NewResourceForm extends React.Component {
           />
         </FormControl>
         <br />
-
+{/* 
         <FormControl className="formElement">
           <InputLabel>Directory</InputLabel>
           <Select value={this.state.directory} 
                   onChange={this.changeDirectory} 
                   required 
                   >
-            <MenuItem value='fsa'>FSA</MenuItem>
+            <MenuItem value='hemp'>Hemp</MenuItem>
             <MenuItem value='cityGuide'>City Guide</MenuItem>
             <MenuItem value='findingWork'>Finding Work</MenuItem>
           </Select>
           <br />
 
         </FormControl>
-        <br />
+        <br /> */}
 
-        <FormControl className='formElement'>
+        {/* <FormControl className='formElement'>
           <InputLabel>Schema Type</InputLabel>
           <Select value={this.state.schema}
                   required 
@@ -145,7 +146,7 @@ class NewResourceForm extends React.Component {
             {schemas}
           </Select>
         </FormControl>
-        <br />
+        <br /> */}
         
         <FormControl className="formElement">
           <InputLabel>Description</InputLabel>
@@ -159,17 +160,17 @@ class NewResourceForm extends React.Component {
         <br />
         
         <FormControl className="formElement">
-          <InputLabel>URL</InputLabel>
+          <InputLabel>Contact Information</InputLabel>
           <Input
-              type="url"
-              id="url"
+              type="contact"
+              id="contact"
               required
               onChange={this.handleChange}
           />
         </FormControl>
         <br />
 
-        {/* Maybe this is automatic depending on who submitted resource? */}
+        {/* Needs to be populated through props */}
         {/* <div className="formElement">
           <InputLabel>Resource Author</InputLabel>
           <Input
@@ -177,27 +178,15 @@ class NewResourceForm extends React.Component {
               id="author"
               onChange={this.handleChange}
           />
-        </div> */}
-        <br />
+        </div>
+        <br /> */}
 
-        <FormControl className="formElement">
-          <InputLabel>Rank</InputLabel>
-          <Input
-              type="number"
-              id="rank"
-              min="1"
-              max="100"
-              required
-              onChange={this.handleChange}
-          />
-          <p className='small'>
-            Give the content a rank between 1 and 100
-          </p>
-        </FormControl>
-        <br />
+
 
         {/* <div onClick={() => this.props.routeHome()}> */}
-          <Button disabled={!this.validateForm()} onClick={this.handleSubmit}>Request</Button>
+          <Button 
+          // disabled={!this.validateForm()} 
+          onClick={this.handleSubmit}>Request</Button>
        {/* </div> */}
 
       </form>
